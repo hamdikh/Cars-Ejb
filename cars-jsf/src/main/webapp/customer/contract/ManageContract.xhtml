@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h1>Create Contract</h1>
+<body>
+
+	<h:form>
+		<h:panelGrid columns="2">
+
+			<h:outputText value="Car" />
+			<h:selectOneMenu value="#{contractBean.car}" converter="carcvt">
+				<f:selectItems value="#{contractBean.cars}" var="c"
+					itemLabel="#{c.registrationNumber}" itemValue="#{c}"></f:selectItems>
+			</h:selectOneMenu>
+
+			<h:outputText value="Days" />
+			<h:inputText value="#{contractBean.days}" />
+
+		</h:panelGrid>
+		<h:commandButton action="#{contractBean.DoSave()}" value="save" />
+	</h:form>
+</body>
+</html>

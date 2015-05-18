@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h1>Create a Car</h1>
+<body>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Available" />
+			<h:inputText value="#{carBean.car.available}" />
+			<h:outputText value="Brand" />
+			<h:inputText value="#{carBean.car.brand}" />
+			<h:outputText value="Registration n°" />
+			<h:inputText value="#{carBean.car.registrationNumber}" />
+			<h:outputText value="Car type" />
+			<h:selectOneMenu value="#{carBean.car.carType}" converter="dtc">
+				<f:selectItems value="#{carBean.carTypes}" var="c"
+					itemLabel="#{c.name}" itemValue="#{c}"></f:selectItems>
+			</h:selectOneMenu>
+		</h:panelGrid>
+		<h:commandButton action="#{carBean.doAddCar()}" value="save" />
+	</h:form>
+
+
+	<h1>List of Cars</h1>
+
+	<h:dataTable border="1" value="#{carBean.cars}" var="cr">
+		<h:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="Available"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.available}" />
+		</h:column>
+		<h:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="Brand"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.brand}" />
+		</h:column>
+		<h:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="RegistrationNumber"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.registrationNumber}" />
+		</h:column>
+		<h:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="Car Type"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.carType.name}" />
+		</h:column>
+	</h:dataTable>
+
+
+	<h1>List Of Cars with Update Method</h1>
+
+	<h:form>
+		<h:dataTable value="#{carBean.cars}" var="crs" border="2">
+			<h:column id="column1">
+				<f:facet name="header">
+					<h:outputText value="Available"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{crs.available}" />
+			</h:column>
+			<h:column id="column2">
+				<f:facet name="header">
+					<h:outputText value="Brand"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{crs.brand}" />
+			</h:column>
+			<h:column id="column3">
+				<f:facet name="header">
+					<h:outputText value="RegistrationNumber"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{crs.registrationNumber}" />
+			</h:column>
+			<h:column id="column4">
+				<f:facet name="header">
+					<h:outputText value="Car Type"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{crs.carType.name}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				<h:commandButton action="#{carBean.doSelect()}" value="select">
+					<f:setPropertyActionListener value="#{crs}" target="#{carBean.car}"></f:setPropertyActionListener>
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+		<h:panelGrid columns="2" rendered="#{carBean.visibility}">
+			<h:outputText value="Available" />
+			<h:inputText value="#{carBean.car.available}" />
+			<h:outputText value="Brand" />
+			<h:inputText value="#{carBean.car.brand}" />
+			<h:outputText value="Registration n°" />
+			<h:inputText value="#{carBean.car.registrationNumber}" />
+			<h:outputText value="Car type" />
+			<h:selectOneMenu value="#{carBean.car.carType}" converter="dtc">
+				<f:selectItems value="#{carBean.carTypes}" var="c"
+					itemLabel="#{c.name}" itemValue="#{c}"></f:selectItems>
+			</h:selectOneMenu>
+			<h:commandButton action="#{carBean.doSaveOrUpdate}"
+				value="save or update" />
+			<h:commandButton action="#{carBean.doDeleteCar()}" value="delete" />
+		</h:panelGrid>
+	</h:form>
+
+	<h1>Search With List Cars</h1>
+
+	<h:form>
+		<h:outputText value="SEARCH FOR CAR : " />
+		<h:selectOneMenu value="#{carBean.carType}" converter="dtc">
+			<f:selectItems value="#{carBean.carTypes}" var="ct"
+				itemLabel="#{ct.name}" itemValue="#{ct}"></f:selectItems>
+		</h:selectOneMenu>
+		<h:commandButton action="#{carBean.doSearch()}" value="SELECT" />
+	</h:form>
+
+	<h:panelGrid rendered="#{carBean.visibility}">
+
+		<h:dataTable value="#{carBean.responseCarTypes}" var="c" border="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Brand" />
+				</f:facet>
+				<h:inputText value="#{c.brand}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Registration Number" />
+				</f:facet>
+				<h:inputText value="#{c.registrationNumber}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Available" />
+				</f:facet>
+				<h:inputText value="#{c.available}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Car Type" />
+				</f:facet>
+				<h:inputText value="#{c.carType.name}" />
+			</h:column>
+		</h:dataTable>
+
+	</h:panelGrid>
+
+</body>
+
+</html>

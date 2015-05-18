@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	
+	
+	<h1>Create Car Type</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Name" />
+				<h:inputText value="#{carTypeBean.carType.name}" />
+			</h:panelGrid>
+			<h:commandButton action="#{carTypeBean.doCreateCarType}" value="save" />
+		</h:form>
+		
+		
+	<h1>List of Car Type</h1>
+	
+		<h:dataTable border="1" value="#{carTypeBean.carTypes}" var="ct">
+				<h:column id="column1">
+					<f:facet name="header">
+						<h:outputText value="Name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{ct.name}" />
+				</h:column>
+
+			</h:dataTable>
+		
+		<h1>List of Car Type With Data Model</h1>
+	
+		<h:dataTable border="1" value="#{carTypeBean.dataModel}" var="ctp">
+				<h:column id="column1">
+					<f:facet name="header">
+						<h:outputText value="Name"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{ctp.name}" />
+				</h:column>
+				<h:column id="column2">
+					<f:facet name="header">
+						<h:outputText value="#"></h:outputText>
+					</f:facet>
+					<h:commandButton action="#{carTypeBean.doSelect()}"
+						value="select" />
+				</h:column>
+			</h:dataTable>
+		
+	
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h1>Create a Car</h1>
+<body>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Available" />
+			<h:inputText value="#{carBean.car.available}" />
+			<h:outputText value="Brand" />
+			<h:inputText value="#{carBean.car.brand}" />
+			<h:outputText value="Registration n°" />
+			<h:inputText value="#{carBean.car.registrationNumber}" />
+			<h:outputText value="Car type" />
+			<h:selectOneMenu value="#{carBean.car.carType}" converter="dtc">
+				<f:selectItems value="#{carBean.carTypes}" var="c"
+					itemLabel="#{c.name}" itemValue="#{c}"></f:selectItems>
+			</h:selectOneMenu>
+		</h:panelGrid>
+		<h:commandButton action="#{carBean.doAddCar()}" value="save" />
+	</h:form>
+</body>
+</html>

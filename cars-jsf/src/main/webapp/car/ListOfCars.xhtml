@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+
+	<h1>List of Cars</h1>
+
+	<h:dataTable border="1" value="#{carBean.cars}" var="cr">
+		<h:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="Available"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.available}" />
+		</h:column>
+		<h:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="Brand"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.brand}" />
+		</h:column>
+		<h:column id="column3">
+			<f:facet name="header">
+				<h:outputText value="RegistrationNumber"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.registrationNumber}" />
+		</h:column>
+		<h:column id="column4">
+			<f:facet name="header">
+				<h:outputText value="Car Type"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{cr.carType.name}" />
+		</h:column>
+	</h:dataTable>
+</body>
+</html>

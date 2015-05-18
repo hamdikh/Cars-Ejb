@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>Search With List Cars</h1>
+
+	<h:form>
+		<h:outputText value="SEARCH FOR CAR : " />
+		<h:selectOneMenu value="#{carBean.carType}" converter="dtc">
+			<f:selectItems value="#{carBean.carTypes}" var="ct"
+				itemLabel="#{ct.name}" itemValue="#{ct}"></f:selectItems>
+		</h:selectOneMenu>
+		<h:commandButton action="#{carBean.doSearch()}" value="SELECT" />
+	</h:form>
+
+	<h:panelGrid rendered="#{carBean.visibility}">
+
+		<h:dataTable value="#{carBean.responseCarTypes}" var="c" border="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Brand" />
+				</f:facet>
+				<h:inputText value="#{c.brand}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Registration Number" />
+				</f:facet>
+				<h:inputText value="#{c.registrationNumber}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Available" />
+				</f:facet>
+				<h:inputText value="#{c.available}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Car Type" />
+				</f:facet>
+				<h:inputText value="#{c.carType.name}" />
+			</h:column>
+		</h:dataTable>
+
+	</h:panelGrid>
+</body>
+</html>
