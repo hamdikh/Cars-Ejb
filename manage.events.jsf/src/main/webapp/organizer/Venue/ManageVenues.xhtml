@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h1>Manage Venues</h1>
+<h:form>
+	<h:panelGrid>
+		<h:outputText value="Adress" />
+		<h:inputText value="#{venueBean.venue.address}" />
+		<h:outputText value="Rental Price" />
+		<h:inputText value="#{venueBean.venue.rentalPrice}" />
+	</h:panelGrid>
+	<h:commandButton action="#{venueBean.doSave()}" value="Save" />
+</h:form>
+</html>

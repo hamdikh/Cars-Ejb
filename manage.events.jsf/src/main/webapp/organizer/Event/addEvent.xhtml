@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>Create Event</h1>
+	<h:form>
+		<h:panelGrid>
+			<h:outputText value="nb Place" />
+			<h:inputText value="#{eventBean.event.nbPlace}" />
+			<h:outputText value="nb Place Initial" />
+			<h:inputText value="#{eventBean.event.nbPlaceInitial}" />
+			<h:outputText value="event Name" />
+			<h:inputText value="#{eventBean.event.eventName}" />
+			<h:outputText value="Category Event" />
+			<h:selectOneMenu value="#{eventBean.event.categoryEvent}"
+				converter="catevtcv">
+				<f:selectItems value="#{eventBean.categoryEvents}" var="ct"
+					itemLabel="#{ct.typeEvenement}" itemValue="#{ct}"></f:selectItems>
+			</h:selectOneMenu>
+
+			<h:outputText value="fees" />
+			<h:inputText value="#{eventBean.event.fees}" />
+		</h:panelGrid>
+		<h:commandButton action="#{eventBean.doSave()}" value="Save" />
+	</h:form>
+</body>
+</html>

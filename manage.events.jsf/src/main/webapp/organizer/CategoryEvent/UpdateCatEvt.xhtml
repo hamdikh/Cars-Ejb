@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h1>List Of Category Event</h1>
+<h:form>
+	<h:dataTable border="1" value="#{categoryEventBean.categoryEvents}"
+		var="ce">
+		<h:column id="column1">
+			<f:facet name="header">
+				<h:outputText value="Type Event"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{ce.typeEvenement}" />
+
+		</h:column>
+		<h:column id="column2">
+			<f:facet name="header">
+				<h:outputText value="#"></h:outputText>
+			</f:facet>
+			<h:commandButton action="#{categoryEventBean.doSelect()}"
+				value="Select">
+				<f:setPropertyActionListener value="#{ce}"
+					target="#{categoryEventBean.categoryEvent}"></f:setPropertyActionListener>
+			</h:commandButton>
+		</h:column>
+	</h:dataTable>
+	<h:panelGrid columns="2" rendered="#{categoryEventBean.visibility}">
+		<h:outputText value="Type Event" />
+		<h:inputText value="#{categoryEventBean.categoryEvent.typeEvenement}" />
+
+		<!-- 			<h:commandButton action="#{carBean.doSaveOrUpdate}" -->
+		<!-- 				value="save or update" /> -->
+		<!-- 			<h:commandButton action="#{carBean.doDeleteCar()}" value="delete" /> -->
+	</h:panelGrid>
+</h:form>
+</html>
