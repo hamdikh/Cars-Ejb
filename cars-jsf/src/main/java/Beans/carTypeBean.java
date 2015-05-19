@@ -1,13 +1,12 @@
 package Beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 
 import services.interfaces.RentalServicesLocal;
 import domain.CarType;
@@ -20,13 +19,29 @@ public class carTypeBean {
 	private RentalServicesLocal rentalServicesLocal;
 
 	private CarType carType = new CarType();
-	private List<CarType> carTypes = new ArrayList();
-	private DataModel<CarType> dataModel = new ListDataModel();
+	private List<CarType> carTypes;
+	private CarType rescarTypes;
+	private DataModel<CarType> dataModel;
+	private String word;
+	private Boolean visibility = false;
 
-	public void doSelect(){
+	@PostConstruct
+	public void initModel() {
+		word = "";
+		carTypes = rentalServicesLocal.findAllCarTypes();
+		// setRescarTypes(new CarType());
+
+	}
+
+	public void doSelect() {
 		System.out.println(dataModel.getRowData());
 	}
-	
+
+	public void doSearch() {
+		rescarTypes = rentalServicesLocal.findCarTypeByName(word);
+		visibility = true;
+	}
+
 	public void doCreateCarType() {
 		rentalServicesLocal.addCarType(carType);
 	}
@@ -40,7 +55,7 @@ public class carTypeBean {
 	}
 
 	public List<CarType> getCarTypes() {
-		carTypes = rentalServicesLocal.findAllCarTypes();
+
 		return carTypes;
 	}
 
@@ -55,6 +70,30 @@ public class carTypeBean {
 
 	public void setDataModel(DataModel<CarType> dataModel) {
 		this.dataModel = dataModel;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public Boolean getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(Boolean visibility) {
+		this.visibility = visibility;
+	}
+
+	public CarType getRescarTypes() {
+		return rescarTypes;
+	}
+
+	public void setRescarTypes(CarType rescarTypes) {
+		this.rescarTypes = rescarTypes;
 	}
 
 }

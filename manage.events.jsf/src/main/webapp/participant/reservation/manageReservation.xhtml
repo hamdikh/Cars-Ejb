@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<h1>Manage Reservations</h1>
+	<h:form>
+		<h:dataTable border="1" emptyMessage="No Events!" paginator="true"
+			paginatorPosition="bottom" rows="4" value="#{reservationBean.events}"
+			var="evts">
+			<h:column id="column1">
+				<f:facet name="header">
+					<h:outputText value="date"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{evts.date}" />
+			</h:column>
+			<h:column id="column2">
+				<f:facet name="header">
+					<h:outputText value="event Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{evts.eventName}" />
+			</h:column>
+			<h:column id="column3">
+				<f:facet name="header">
+					<h:outputText value="category Event"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{evts.categoryEvent}" />
+			</h:column>
+			<h:column id="column4">
+				<f:facet name="header">
+					<h:outputText value="fees"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{evts.fees}" />
+			</h:column>
+			<h:column id="column5">
+				<f:facet name="header">
+					<h:outputText value="fees"></h:outputText>
+				</f:facet>
+				<h:commandButton action="#{reservationBean.doParticipate()}"
+					value="Participate" />
+			</h:column>
+		</h:dataTable>
+
+	</h:form>
+</body>
+</html>

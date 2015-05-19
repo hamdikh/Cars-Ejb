@@ -19,7 +19,7 @@ public class ContractBean {
 
 	private Car car;
 	private List<Car> cars;
-	private Integer days;
+	private int days;
 
 	@ManagedProperty("#{identity.identifiedUser}")
 	private Customer customer;
@@ -32,7 +32,7 @@ public class ContractBean {
 		cars = rentalServicesLocal.findAllCars();
 		days = 0;
 	}
-
+	
 	public String DoSave() {
 		rentalServicesLocal.createContract(customer, car, new Date(), days);
 		return "/customer/home?faces-redirect=true";
@@ -62,11 +62,11 @@ public class ContractBean {
 		this.customer = customer;
 	}
 
-	public Integer getDays() {
+	public int getDays() {
 		return days;
 	}
 
-	public void setDays(Integer days) {
+	public void setDays(int days) {
 		this.days = days;
 	}
 
